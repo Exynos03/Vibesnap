@@ -1,9 +1,17 @@
+import { getUserDetails } from "../../../utils/getUserDetails"
 import HeaderProfile from "../components/HeaderProfile"
+import styles from "../stylesheets/profile.module.css"
 
 const Profile = () => {
+  const userDetails = getUserDetails()
+
   return (
     <section>
-        <HeaderProfile editMode={false} coverPhoto="https://images.pexels.com/photos/28448927/pexels-photo-28448927/free-photo-of-snow-covered-sand-dunes-in-almaty-region.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" profilePhoto="https://images.pexels.com/photos/29447183/pexels-photo-29447183/free-photo-of-elegant-woman-in-traditional-dress-portrait.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>
+        <HeaderProfile editMode={false} navigateRoute="/feed" coverPhoto={userDetails?.coverPhotoURL} profilePhoto={userDetails?.photoURL} />
+        <div className={styles.info}>
+          <h1>{userDetails?.displayName}</h1>
+          <p>{userDetails?.bio}</p>
+        </div>
     </section>
   )
 }

@@ -1,8 +1,23 @@
+import { useNavigate } from "react-router-dom";
 import { handleGoogleSignIn } from "../../../utils/googleAuth";
 import Logo from "/logo.webp"
 import { FcGoogle } from "react-icons/fc";
+import { useEffect } from "react";
+import getCookie from "../../../cookies/getCookies";
 
 const Home = () => {
+  const navigate = useNavigate()
+
+  useEffect( () => {
+    if(getCookie("sessionData")) navigate("/profile")
+  }, [])
+
+  const handleGAuth = async () => {
+    const res = await handleGoogleSignIn()
+    if(res?.existingUser) navigate("/feed") 
+    else navigate("/profile")
+  }
+
   return (
     <section className='w-full flex flex-col md:flex-row sm:flex-row justify-center items-center h-screen'>
         <div className='w-full h-screen md:h-[70vh] sm:h-[70vh] flex justify-center items-center'>
@@ -20,7 +35,7 @@ const Home = () => {
               </div>
 
               {/* GAuth Button */}
-              <button onClick={handleGoogleSignIn} className='bg-[#292929] w-[60%] mx-auto cursor-pointer mt-4 flex justify-center items-center p-4 gap-4 rounded-[26px] opacity-100'>
+              <button onClick={handleGAuth} className='bg-[#292929] w-[60%] mx-auto cursor-pointer mt-4 flex justify-center items-center p-4 gap-4 rounded-[26px] opacity-100'>
                 <FcGoogle />
                 <p className='font-karla text-[16px] font-bold leading-[22.4px] text-[#FFFFFF]'>Continue with Google</p>
               </button>

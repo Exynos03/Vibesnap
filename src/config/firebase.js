@@ -4,13 +4,13 @@ import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB6yiqS7thyzF_pzQ7KyXAJbQ2x7yBLxTE",
-  authDomain: "loveto-love-line.firebaseapp.com",
-  projectId: "loveto-love-line",
-  storageBucket: "loveto-love-line.appspot.com",
-  messagingSenderId: "307344031776",
-  appId: "1:307344031776:web:1156bef98fb60533077c45",
-  measurementId: "G-7D5WP954JM"
+  apiKey: "AIzaSyBuA9P0XNwymLwoHpOsNElaAcgr1uRG4XA",
+  authDomain: "loveto-love-timeline.firebaseapp.com",
+  projectId: "loveto-love-timeline",
+  storageBucket: "loveto-love-timeline.appspot.com",
+  messagingSenderId: "1068876968985",
+  appId: "1:1068876968985:web:0c1f47a2ae6289b9792688",
+  measurementId: "G-X23Y14TPSL"
 };
 
 // Initialize Firebase
