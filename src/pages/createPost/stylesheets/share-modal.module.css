@@ -1,0 +1,112 @@
+
+.popup_wrapper {
+    position: fixed;
+    z-index: 99;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: rgba(79, 77, 77, 0.2);
+    backdrop-filter: blur(3px);
+  }
+
+  .modal_container {
+    position: fixed;
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    padding: 20px;
+    border-radius: 12px;
+    width: 85%;
+    max-width: 495px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header > p {
+    margin: 0;
+    font-family: Karla;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 25.72px;
+    text-align: left;
+    color: #000000;
+  }
+
+  .cross {
+    border-radius: 50%;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F5F5F5;
+    cursor: pointer;
+  }
+
+  .link {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .link > p {
+    margin: 0;
+    font-family: Karla;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18.7px;
+    text-align: left;
+    color: #000000;
+  }
+
+  .link > div {
+    background-color: #D9D9D9;
+    border-radius: 12px;
+    padding: 10px;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .link > div > p {
+    margin: 0;
+    font-family: Kumbh Sans;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.88px;
+    text-align: center;
+    color: #212121;
+  }
+
+  .grid_container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    grid-template-rows: repeat(2, 1fr);   /* 2 rows */
+    gap: 16px;    
+    padding: 10px;                        /* Optional: space between grid items */
+  }
+  
+  .grid_item {
+    background-color: #f0f0f0;            /* Optional: item background */
+    padding: 16px;                        /* Optional: item padding */
+    text-align: center;                   /* Optional: center content */
+    border: 1px solid #ccc;               /* Optional: border for visibility */
+  }

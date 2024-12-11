@@ -8,3 +8,13 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #ff5733; /* Change to your desired color */
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: white; /* Optional: Change color on hover */
+}

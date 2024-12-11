@@ -7,6 +7,7 @@ import { getUserDetails } from "../../../utils/getUserDetails.js";
 import { uploadData } from "../../../utils/UserData.js";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 
 const CreatePost = () => {
   const [caption, setCaption] = useState('')
@@ -58,16 +59,23 @@ const CreatePost = () => {
             const mediaArray = await uploadFilesToFirebase()
 
             const newPost = {
+                postId:uuidv4(),
                 uid: userDetails?.uid,
                 mediaURLs: mediaArray,
                 caption: extractHashtags(caption)?.caption,
-                hastags: extractHashtags(caption)?.hashtags
+                hastags: extractHashtags(caption)?.hashtags,
+                creatorName: userDetails?.displayName,
+                photoURL: userDetails?.photoURL,
+                likeCount: 0,
+                likedBy : []
             }
 
             await uploadData("posts", newPost, true)
             navigate("/feed")
         } catch (error) {
             console.error("Error happend in post uplaod => ", error);
+        } finally {
+          setLoading(false)
         }
     }
 
@@ -88,12 +96,11 @@ const CreatePost = () => {
              error: "Something went wrong. Try again later",
            }
          );
-         setLoading(false)
       }
 
   return (
     <section>
-        <FaArrowLeft color="#000000" size={ window.innerWidth > 768 ? 30 : 25} style={{marginLeft:"8%", marginTop:"5%", cursor:"Pointer"}}/>  
+        <FaArrowLeft color="#000000" size={ window.innerWidth > 768 ? 30 : 25} style={{marginLeft:"8%", marginTop:"5%", cursor:"Pointer"}} onClick={() => navigate(-1)}/>  
         <MediaViewer files={files} setFiles={setFiles} setCaption={setCaption} caption={caption}/>
         <button className="create-btn" onClick={handleCreateBtn} disabled={loading}>Create</button>
     </section>

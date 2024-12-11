@@ -22,7 +22,7 @@ const MediaViewer = ({files, setFiles, setCaption, caption}) => {
 
     // Add only unique files (avoid duplicates)
     const filteredFiles = newFiles.filter(
-      (newFile) => !files.some((existingFile) => existingFile.name === newFile.name)
+      (newFile) => !files?.some((existingFile) => existingFile.name === newFile.name)
     );
 
     setFiles((prevFiles) => [...prevFiles, ...filteredFiles]);

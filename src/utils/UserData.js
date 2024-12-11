@@ -1,30 +1,33 @@
-import { addDoc, collection, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, serverTimestamp, updateDoc, where } from "firebase/firestore";
 import { db } from "../config/firebase";
 
 export async function uploadData(collectionName, data, flag) {
-    try {
-      const colRef = collection(db, collectionName);
-  
-      if(!flag) {
-          // Check if a document with the given uid exists
+  try {
+    const colRef = collection(db, collectionName);
+
+    // If flag is false, check if a document with the given uid exists
+    if (!flag) {
         const q = query(colRef, where("uid", "==", data.uid));
         const querySnapshot = await getDocs(q);
-    
-        if (!querySnapshot.empty) {
-          // User already exists, return their details
-          const existingUser = querySnapshot.docs[0].data();
-          return {data:existingUser, existingUser: true};
-        }
-      }
   
-      // Add a new document since the user does not exist
-      await addDoc(colRef, data);
-      return {data:data, existingUser: true}; 
-    } catch (e) {
-      console.error("Error adding or checking document:", e);
-      throw e;
+        if (!querySnapshot.empty) {
+            // User already exists, return their details
+            const existingUser = querySnapshot.docs[0].data();
+            return { data: existingUser, existingUser: true };
+        }
     }
+
+    // Add the createdAt field to the data object
+    data.createdAt = serverTimestamp(); // Automatically set the timestamp
+
+    // Add a new document since the user does not exist
+    await addDoc(colRef, data);
+    return { data: data, existingUser: false };  // Change existingUser flag to false since it's a new user
+  } catch (e) {
+    console.error("Error adding or checking document:", e);
+    throw e;
   }
+}
 
   export async function updateDataFirestore(collectionName, uid, updatedData) {
     const collectionRef = collection(db, collectionName); // Reference to the collection

@@ -7,6 +7,11 @@ import EditProfile from "./pages/profile/container/EditProfile"
 import ProtectedRoute from './ProtectedRoute'
 import { Toaster } from 'react-hot-toast'
 import CreatePost from './pages/createPost/container/CreatePost'
+import Feed from './pages/feed/container/Feed'
+import Test from './Test'
+import ShareModal from './pages/createPost/components/ShareModal'
+import Posts from './pages/feed/components/Posts'
+import IndividualPost from './pages/feed/container/IndividualPost'
 
 function App() {
   
@@ -20,7 +25,9 @@ function App() {
             <Route path='/profile' element={<Profile />} />
             <Route path='/editProfile' element={<EditProfile />} />
             <Route path="/createPost" element={<CreatePost />} />
+            <Route path='/feed' element={<Feed />}/>
           </Route>
+          <Route path='/feed/:postId' element={<IndividualPost/>}/>
         </Routes>
       </BrowserRouter>
     </>

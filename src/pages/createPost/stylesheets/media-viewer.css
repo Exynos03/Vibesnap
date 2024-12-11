@@ -19,15 +19,16 @@
   .swiper-slide video  {
     /* display: block; */
     max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
+    max-height: 50vh;
+    object-fit: contain;
   }
 
   .img-video {
     width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    max-width: 100%; /* Prevent overflow */
-    max-height: 100%; /* Prevent overflow */
+    object-fit: fill;
+    height: auto; 
+    /* max-width: 100%;  
+    max-height: 100%;  */
 }
 
   .media-container {
@@ -41,9 +42,9 @@
   }
 
   .media-viewer {
-    margin: 8%;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin: 5%;
+    /* margin-left: 10%;
+    margin-right: 10%; */
     margin-left: auto;
     margin-right: auto;
     max-width: 700px;
@@ -124,6 +125,11 @@
 
   @media (max-width: 768px)  {
 
+    .mySwiper {
+      border-radius: 12px;
+      max-height: 50vh;
+    }
+
     .media-counter {
       z-index: 999;
       top: 3%;
@@ -135,6 +141,9 @@
     }
 
     .media-viewer {
+      margin: 8%;
+      margin-left: 15%;
+      margin-right: 15%;
       max-width: 300px;
     }
 
