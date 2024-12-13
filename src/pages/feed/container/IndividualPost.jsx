@@ -5,8 +5,8 @@ import styles from "../stylesheets/post.module.css"
 const IndividualPost = () => {
   return (
     <main className={styles.feed_container}>
-        <Header />
-        <FeedBody color="#F7EBFF"/>
+        {/* <Header sharePostFlag={true}/> */}
+        <FeedBody sharePostFlag={true} color="#F7EBFF"/>
     </main>
   )
 }

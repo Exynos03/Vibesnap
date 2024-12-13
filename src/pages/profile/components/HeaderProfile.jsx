@@ -5,6 +5,7 @@ import { MdEdit } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import uploadMedia from "../../../utils/uploadMedia";
 import toast from "react-hot-toast";
+import removeCookie from "../../../cookies/removeCookies";
 
 const HeaderProfile = ({editMode , coverPhoto, profilePhoto, navigateRoute, setCoverPhoto, setProfilePhoto}) => {
   const navigate = useNavigate();
@@ -68,7 +69,10 @@ const HeaderProfile = ({editMode , coverPhoto, profilePhoto, navigateRoute, setC
           { editMode && <div className={styles.edit_btn_div} onClick={() => handleFileInputClick(profileInputRef)}><MdEdit className={styles.edit_btn}/></div>}
         </div>       
 
-        { !editMode && <button onClick={() => navigate("/editProfile")}>Edit Profile</button> }
+        { !editMode && <div className={styles.btns}>
+            <button onClick={() => navigate("/editProfile")}>Edit Profile</button> 
+            <button onClick={() => {removeCookie("sessionData"); navigate("/")}}>Log out</button>
+          </div> }
         <input
           type="file"
           accept="image/*" // Accepts all image types

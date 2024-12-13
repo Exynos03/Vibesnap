@@ -23,7 +23,14 @@ import {
 import toast from "react-hot-toast";
 
 const ShareModal = ({postId, setShowShareModal}) => {
-    const shareUrl = window.location.href + "/" + postId;
+    function hasUUID(url, uuid) {
+        const regex = new RegExp(`/feed/${uuid}`);
+        return regex.test(url);
+    }
+    let shareUrl
+
+    if(hasUUID(window.location.href, postId)) shareUrl = window.location.href
+    else shareUrl = window.location.href + "/" + postId
     const title = 'Check out this amazing content!';
 
     const handleCopyUrl = (url) => {
@@ -36,6 +43,7 @@ const ShareModal = ({postId, setShowShareModal}) => {
             toast.error("Failed to copy the URL.");
           });
       };    
+
 
   return (
     <>

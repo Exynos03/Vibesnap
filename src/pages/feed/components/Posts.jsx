@@ -23,15 +23,19 @@ import { getUserDetails } from "../../../utils/getUserDetails";
 import toast from "react-hot-toast";
 
 
-const Posts = ({post, key , color}) => {
+const Posts = ({post , color}) => {
   const userDetails = getUserDetails()
   const [showShareModal, setShowShareModal] = useState(false)
   const [isLiked, setIsLiked] = useState(post?.likedBy?.includes(userDetails.uid) || false)
   const [prevIsLiked, setPrevIsLiked] = useState(post?.likedBy?.includes(userDetails.uid) || false)
-  const [likeCount, setLikeCount] = useState(post.likeCount || 0)
-  const videoLinkRegex = /\.(mp4|mkv|avi|mov|flv|wmv|webm|mpeg|mpg|3gp|ogg)$/i;
+  const [likeCount, setLikeCount] = useState(post?.likeCount || 0)
 
   const handleLike = async () => {
+    if(!userDetails) {
+      toast.error("You need to Create an account to like the post")
+      return
+    }
+    
     if(isLiked) {
       setIsLiked(false)
       setLikeCount( (prevVal) => prevVal - 1)
@@ -60,7 +64,7 @@ const Posts = ({post, key , color}) => {
   }
 
   const getTimeDifference = (firebaseTimestamp) => {
-    const createdAt = firebaseTimestamp.toDate(); // Convert Firebase timestamp to JS Date
+    const createdAt = firebaseTimestamp?.toDate(); // Convert Firebase timestamp to JS Date
     const now = new Date();
     const timeDiff = now - createdAt; // Difference in milliseconds
   
@@ -82,7 +86,7 @@ const Posts = ({post, key , color}) => {
 
 
   return (
-    <section className={styles.post} style={{backgroundColor: color, }} key={key}>
+    <section className={styles.post} style={{backgroundColor: color, }} >
         { showShareModal && <ShareModal postId={post?.postId} setShowShareModal={setShowShareModal}/>}
         <div className={styles.creator_meta}>
             <img src={post?.photoURL} alt="Display picture"/>
@@ -128,6 +132,9 @@ const Posts = ({post, key , color}) => {
                 <video 
                   style={{ borderRadius: "12px" }} 
                   controls 
+                  autoPlay 
+                  muted 
+                  loop
                   src={media} 
                 />
               ) : (

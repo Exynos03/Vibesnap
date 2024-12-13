@@ -165,9 +165,9 @@
 }
 
 .floating_action_btn {
-    position: absolute;
+    position: fixed;
     right: 2%;
-    bottom: 0;
+    bottom: 2%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -176,6 +176,7 @@
     background-color: #000000;
     border: 1px solid #FFFFFF4F;
     cursor: pointer;
+    z-index: 1000;
 }
 
 @media (max-width: 768px) {
@@ -327,9 +328,9 @@
     }
 
     .floating_action_btn {
-        position: absolute;
+        position: fixed;
         right: 3%;
-        bottom: 0;
+        bottom: 3%;
         display: flex;
         justify-content: center;
         align-items: center;

@@ -1,0 +1,224 @@
+.my_posts {
+    position: absolute;
+    top: 490px;
+    left: 10%;
+    width: 80%;
+    max-width: 1080px;
+    padding: 8px;
+    height: auto;
+    overflow: auto;
+}
+
+.my_posts > p{
+    margin: 0;
+    font-family: Karla;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 26px;
+    text-align: left;
+    color: black;
+}
+
+.grid {
+    margin-top: 12px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 16px;
+}
+
+.post {
+    height: auto;
+    position: relative;
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.post::before {
+    content: ''; /* Create an empty overlay element */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 37.07%, rgba(0, 0, 0, 0.8) 79.64%);
+    z-index: 1; /* Make sure overlay is above other content */
+  }
+
+.post > img , 
+.post >video {
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.post > p {
+    position: absolute;
+    width: 310px;
+    left: 7%;
+    bottom: 10%;
+    font-family: Kumbh Sans;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    color: white;
+    white-space: nowrap;        
+    overflow: hidden;           
+    text-overflow: ellipsis;
+    z-index: 2;
+}
+
+.media_count {
+    position: absolute;
+    top: 4%;
+    right: 5%;
+    background-color: #FFFFFF;
+    padding: 4px 10px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Karla;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 20px;
+    text-align: left;
+    color: black;
+    z-index: 2;
+}
+
+.likes {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    left: 7%;
+    bottom: 3%;
+    z-index: 2;
+}
+
+.likes > p {
+    margin: 0;
+    font-family: Kumbh Sans;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+@media (max-width: 768px) {
+    .my_posts {
+        position: absolute;
+        top: 340px;
+        left: 4%;
+        width: 92%;
+        padding: 8px;
+        height: auto;
+        overflow: auto;
+    }
+    
+    .my_posts > p{
+        margin: 0;
+        font-family: Karla;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 21.04px;
+        text-align: left;
+        color: black;
+    }
+    
+    .grid {
+        margin-top: 12px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px;
+    }
+    
+    .post {
+        height: auto;
+        position: relative;
+        cursor: pointer;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    
+    .post::before {
+        content: ''; /* Create an empty overlay element */
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 37.07%, rgba(0, 0, 0, 0.8) 79.64%);
+        z-index: 1; /* Make sure overlay is above other content */
+      }
+    
+    .post > img , 
+    .post >video {
+        border-radius: 12px;
+        object-fit: cover;
+    }
+    
+    .post > p {
+        position: absolute;
+        width: 135px;
+        left: 7%;
+        bottom: 14%;
+        font-family: Kumbh Sans;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 17.36px;
+        text-align: left;
+        color: white;
+        white-space: nowrap;        
+        overflow: hidden;           
+        text-overflow: ellipsis;
+        z-index: 2;
+    }
+    
+    .media_count {
+        position: absolute;
+        top: 4%;
+        right: 5%;
+        background-color: #FFFFFF;
+        padding: 2px 5px;
+        border-radius: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        font-family: Karla;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 14.03px;
+        text-align: left;
+        color: black;
+        z-index: 2;
+    }
+    
+    .likes {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        left: 7%;
+        bottom: 5%;
+        z-index: 2;
+    }
+    
+    .likes > p {
+        margin: 0;
+        font-family: Kumbh Sans;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 14.88px;
+        text-align: left;
+        color: #FFFFFF;
+    }
+}

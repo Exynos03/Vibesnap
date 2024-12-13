@@ -18,3 +18,9 @@ html, body {
 .swiper-button-prev:hover {
   color: white; /* Optional: Change color on hover */
 }
+
+.login_img {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+}

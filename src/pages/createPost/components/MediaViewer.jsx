@@ -72,6 +72,9 @@ const MediaViewer = ({files, setFiles, setCaption, caption}) => {
                     <video
                         src={preview}
                         controls
+                        autoPlay 
+                        muted 
+                        loop
                         className='img-video'
                     />
                 )}

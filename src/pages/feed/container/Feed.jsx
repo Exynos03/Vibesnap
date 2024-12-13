@@ -8,13 +8,15 @@ const Feed = () => {
   const navigate = useNavigate()
 
   return (
+    <>
     <main className={styles.feed_container}>
         <Header />
         <FeedBody color="#F7EBFF"/>
-        <div className={styles.floating_action_btn} onClick={() => navigate("/createPost")}>
-          <FiPlus color="white" size={20}/>
-        </div>
     </main>
+    <div className={styles.floating_action_btn} onClick={() => navigate("/createPost")}>
+          <FiPlus color="white" size={20}/>
+    </div>
+    </>
   )
 }
 

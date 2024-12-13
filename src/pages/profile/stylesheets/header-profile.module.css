@@ -40,11 +40,18 @@
     left: 4%;
 }
 
-header > button {
+.btns {
     position: absolute;
-    width: 30%;
-    right: 8%;
+    right: 5%;
+    width: 40%;
     top : 300px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.btns > button {
     border: 1px solid #00000057;
     border-radius: 36px;
     padding: 8px 20px;
@@ -125,11 +132,18 @@ header > button {
         left: 5%;
     }
 
-    header > button {
+    .btns {
         position: absolute;
-        width: 50%;
-        right: 10%;
+        width: 60%;
+        right: 5%;
         top : 205px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btns > button {
         border: 1px solid #00000057;
         border-radius: 36px;
         padding: 8px 20px;

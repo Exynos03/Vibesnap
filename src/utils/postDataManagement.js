@@ -39,3 +39,63 @@ export async function managePostLike(collectionName, postId, theFieldName, uid) 
   }
 }
 
+export async function fetchPostById(postId) {
+  if (!postId) {
+      throw new Error("postId is required.");
+  }
+
+  try {
+      // Reference to the posts collection
+      const postsRef = collection(db, "posts");
+
+      // Query to find the document with the given postId
+      const q = query(postsRef, where("postId", "==", postId));
+
+      // Execute the query
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.empty) {
+          return false
+      }
+
+      // Assuming postId is unique, return the first matching post
+      const post = querySnapshot.docs[0].data();
+
+      return post;
+  } catch (error) {
+      console.error("Error fetching post:", error);
+      return false
+  }
+}
+
+export async function fetchPostsByUid(uid, limit = 10) {
+  try {
+    if (!uid) {
+      throw new Error('A valid UID is required.');
+    }
+
+    // Query the posts collection
+    const postsRef = collection(db, "posts");
+    const querySnapshot = await postsRef
+      .where('uid', '==', uid)
+      .orderBy('createdAt', 'desc')
+      .limit(limit)
+      .get();
+
+    if (querySnapshot.empty) {
+      return []; // Return an empty array if no posts are found
+    }
+
+    // Map the query results to an array of post data
+    const posts = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    return posts;
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    return false
+  }
+}
+

@@ -4,6 +4,7 @@ import Logo from "/logo.webp"
 import { FcGoogle } from "react-icons/fc";
 import { useEffect } from "react";
 import getCookie from "../../../cookies/getCookies";
+import Image from "/vibesnap_collage.jpg"
 
 const Home = () => {
   const navigate = useNavigate()
@@ -21,9 +22,9 @@ const Home = () => {
   return (
     <section className='w-full flex flex-col md:flex-row sm:flex-row justify-center items-center h-screen'>
         <div className='w-full h-screen md:h-[70vh] sm:h-[70vh] flex justify-center items-center'>
-            <h1 className='text-orange'>Photo Collage</h1>
+            <img src={Image} className="login_img"/>
         </div>
-        <div className='w-full h-screen md:h-[30vh] sm:h-[30vh] flex justify-center items-center'>
+        <div className='w-full h-screen md:h-[10vh] sm:h-[10vh] flex justify-center items-center rounded-tl-[12px] rounded-tr-[12px] z-[11] bg-white border-red-700'>
             <div className='w-full flex-row justify-center items-center align-middle'>
                 {/* Logo */}
               <div className='w-full flex-row justify-center items-center align-middle'>

@@ -1,5 +1,6 @@
 import getCookie from "../cookies/getCookies"
 
  export const getUserDetails = () => {
-    return JSON.parse(getCookie("sessionData"))
+   if(getCookie("sessionData")) return JSON.parse(getCookie("sessionData"))
+      else return false
  }

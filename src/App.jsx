@@ -8,9 +8,6 @@ import ProtectedRoute from './ProtectedRoute'
 import { Toaster } from 'react-hot-toast'
 import CreatePost from './pages/createPost/container/CreatePost'
 import Feed from './pages/feed/container/Feed'
-import Test from './Test'
-import ShareModal from './pages/createPost/components/ShareModal'
-import Posts from './pages/feed/components/Posts'
 import IndividualPost from './pages/feed/container/IndividualPost'
 
 function App() {
