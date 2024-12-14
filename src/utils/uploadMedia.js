@@ -1,5 +1,9 @@
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 async function uploadMedia(file, folderName) {
   if (!file) {
@@ -30,7 +34,7 @@ async function uploadMedia(file, folderName) {
             console.error("Error getting download URL:", error);
             reject(error);
           });
-      }
+      },
     );
   });
 }

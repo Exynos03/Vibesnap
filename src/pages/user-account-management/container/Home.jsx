@@ -1,49 +1,63 @@
 import { useNavigate } from "react-router-dom";
 import { handleGoogleSignIn } from "../../../utils/googleAuth";
-import Logo from "/logo.webp"
+import Logo from "/logo.webp";
 import { FcGoogle } from "react-icons/fc";
 import { useEffect } from "react";
 import getCookie from "../../../cookies/getCookies";
-import Image from "/vibesnap_collage.jpg"
+import Image from "/vibesnap_collage.jpg";
 
 const Home = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  useEffect( () => {
-    if(getCookie("sessionData")) navigate("/profile")
-  }, [])
+  useEffect(() => {
+    if (getCookie("sessionData")) navigate("/profile");
+  }, []);
 
   const handleGAuth = async () => {
-    const res = await handleGoogleSignIn()
-    if(res?.existingUser) navigate("/feed") 
-    else navigate("/profile")
-  }
+    const res = await handleGoogleSignIn();
+    if (res?.existingUser) navigate("/feed");
+    else navigate("/profile");
+  };
 
   return (
-    <section className='w-full flex flex-col md:flex-row sm:flex-row justify-center items-center h-screen'>
-        <div className='w-full h-screen md:h-[70vh] sm:h-[70vh] flex justify-center items-center'>
-            <img src={Image} className="login_img"/>
-        </div>
-        <div className='w-full h-screen md:h-[10vh] sm:h-[10vh] flex justify-center items-center rounded-tl-[12px] rounded-tr-[12px] z-[11] bg-white border-red-700'>
-            <div className='w-full flex-row justify-center items-center align-middle'>
-                {/* Logo */}
-              <div className='w-full flex-row justify-center items-center align-middle'>
-                <div className='flex justify-center items-center'>
-                    <img className='w-[58px] md:w-[42px] sm:w-[42px]' src={Logo} alt="Logo" />
-                    <p className='font-karla align-middle items-center text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[24px] sm:leading-[28px] md:leading-[32.73px] lg:leading-[36px] text-left decoration-skip-ink-none'>Vibesnap</p>
-                </div>
-                <p className='font-kumbh text-[16px] sm:text-[18px] font-normal text-center decoration-skip-ink-none mt-1.5'>Moments That Matter, Shared Forever</p>
-              </div>
+    <section className="w-full flex flex-col md:flex-row justify-center items-center h-screen bg-white">
+      {/* Collage Image Section */}
+      <div className="w-full md:w-2/3 h-1/2 md:h-full">
+        <img src={Image} alt="Collage" className="w-full h-full object-cover" />
+      </div>
 
-              {/* GAuth Button */}
-              <button onClick={handleGAuth} className='bg-[#292929] w-[60%] mx-auto cursor-pointer mt-4 flex justify-center items-center p-4 gap-4 rounded-[26px] opacity-100'>
-                <FcGoogle />
-                <p className='font-karla text-[16px] font-bold leading-[22.4px] text-[#FFFFFF]'>Continue with Google</p>
-              </button>
-            </div>
+      {/* Bottom Content Section */}
+      <div className="w-full md:w-1/3 h-1/2 md:h-full flex flex-col justify-center items-center bg-white rounded-tl-[12px] rounded-tr-[12px] md:rounded-none shadow-lg">
+        {/* Logo Section */}
+        <div className="flex flex-col justify-center items-center">
+          <div className="flex items-center mb-2">
+            <img
+              className="w-[48px] md:w-[58px] lg:w-[64px] mr-2"
+              src={Logo}
+              alt="Logo"
+            />
+            <p className="font-karla text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[28px] md:leading-[32px] lg:leading-[36px]">
+              Vibesnap
+            </p>
+          </div>
+          <p className="font-kumbh text-[16px] md:text-[18px] lg:text-[20px] text-center">
+            Moments That Matter, Shared Forever
+          </p>
         </div>
+
+        {/* Google Authentication Button */}
+        <button
+          onClick={handleGAuth}
+          className="bg-[#292929] w-[80%] md:w-[70%] lg:w-[60%] mt-4 flex justify-center items-center py-3 px-6 gap-4 rounded-[26px] text-white shadow-md hover:opacity-90 transition-opacity"
+        >
+          <FcGoogle className="text-[20px] md:text-[24px]" />
+          <span className="font-karla text-[16px] md:text-[18px] font-bold">
+            Continue with Google
+          </span>
+        </button>
+      </div>
     </section>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

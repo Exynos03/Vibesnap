@@ -1,4 +1,12 @@
-import { addDoc, collection, getDocs, query, serverTimestamp, updateDoc, where } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  serverTimestamp,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { db } from "../config/firebase";
 
 export async function uploadData(collectionName, data, flag) {
@@ -7,14 +15,14 @@ export async function uploadData(collectionName, data, flag) {
 
     // If flag is false, check if a document with the given uid exists
     if (!flag) {
-        const q = query(colRef, where("uid", "==", data.uid));
-        const querySnapshot = await getDocs(q);
-  
-        if (!querySnapshot.empty) {
-            // User already exists, return their details
-            const existingUser = querySnapshot.docs[0].data();
-            return { data: existingUser, existingUser: true };
-        }
+      const q = query(colRef, where("uid", "==", data.uid));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        // User already exists, return their details
+        const existingUser = querySnapshot.docs[0].data();
+        return { data: existingUser, existingUser: true };
+      }
     }
 
     // Add the createdAt field to the data object
@@ -22,71 +30,78 @@ export async function uploadData(collectionName, data, flag) {
 
     // Add a new document since the user does not exist
     await addDoc(colRef, data);
-    return { data: data, existingUser: false };  // Change existingUser flag to false since it's a new user
+    return { data: data, existingUser: false }; // Change existingUser flag to false since it's a new user
   } catch (e) {
     console.error("Error adding or checking document:", e);
     throw e;
   }
 }
 
-  export async function updateDataFirestore(collectionName, uid, updatedData) {
-    const collectionRef = collection(db, collectionName); // Reference to the collection
-    const q = query(collectionRef, where("uid", "==", uid)); // Query to find the document by uid
-  
-    try {
-      const querySnapshot = await getDocs(q);
-  
-      if (querySnapshot.empty) {
-        console.error(`No document found with uid: ${uid}`);
-        throw new Error(`No document found with uid: ${uid}`);
-      }
-  
-      const docRef = querySnapshot.docs[0].ref; // Get the document reference of the first match
-      await updateDoc(docRef, updatedData);
-      return true
-    } catch (error) {
-      console.error(`Error updating document with uid '${uid}':`, error);
-      throw error;
-    }
-  }
+export async function updateDataFirestore(collectionName, uid, updatedData) {
+  const collectionRef = collection(db, collectionName); // Reference to the collection
+  const q = query(collectionRef, where("uid", "==", uid)); // Query to find the document by uid
 
-  export async function updateFieldFirestore(collectionName, uid, fieldName, fieldValue) {
-    const collectionRef = collection(db, collectionName); // Reference to the collection
-    const q = query(collectionRef, where("uid", "==", uid)); // Query to find the document by uid
-  
-    try {
-      const querySnapshot = await getDocs(q);
-  
-      if (querySnapshot.empty) {
-        console.error(`No document found with uid: ${uid}`);
-        throw new Error(`No document found with uid: ${uid}`);
-      }
-  
-      const docRef = querySnapshot.docs[0].ref; // Get the document reference of the first match
-      await updateDoc(docRef, { [fieldName]: fieldValue });
-      console.log(`Field '${fieldName}' updated successfully in document with uid '${uid}'!`);
-    } catch (error) {
-      console.error(`Error updating field '${fieldName}':`, error);
-      throw error;
-    }
-  }
+  try {
+    const querySnapshot = await getDocs(q);
 
-  export async function getDataByUid(uid, collectionName) {
-    const collectionRef = collection(db, collectionName); // Reference to the collection
-    const q = query(collectionRef, where("uid", "==", uid)); // Query to find the document by uid
-  
-    try {
-      const querySnapshot = await getDocs(q);
-  
-      if (querySnapshot.empty) {
-        console.log(`No document found with uid: ${uid}`);
-        return null;
-      }
-  
-      // Return the data of the first matching document
-      return querySnapshot.docs[0].data();
-    } catch (error) {
-      console.error("Error getting document: ", error);
+    if (querySnapshot.empty) {
+      console.error(`No document found with uid: ${uid}`);
+      throw new Error(`No document found with uid: ${uid}`);
+    }
+
+    const docRef = querySnapshot.docs[0].ref; // Get the document reference of the first match
+    await updateDoc(docRef, updatedData);
+    return true;
+  } catch (error) {
+    console.error(`Error updating document with uid '${uid}':`, error);
+    throw error;
+  }
+}
+
+export async function updateFieldFirestore(
+  collectionName,
+  uid,
+  fieldName,
+  fieldValue,
+) {
+  const collectionRef = collection(db, collectionName); // Reference to the collection
+  const q = query(collectionRef, where("uid", "==", uid)); // Query to find the document by uid
+
+  try {
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+      console.error(`No document found with uid: ${uid}`);
+      throw new Error(`No document found with uid: ${uid}`);
+    }
+
+    const docRef = querySnapshot.docs[0].ref; // Get the document reference of the first match
+    await updateDoc(docRef, { [fieldName]: fieldValue });
+    console.log(
+      `Field '${fieldName}' updated successfully in document with uid '${uid}'!`,
+    );
+  } catch (error) {
+    console.error(`Error updating field '${fieldName}':`, error);
+    throw error;
+  }
+}
+
+export async function getDataByUid(uid, collectionName) {
+  const collectionRef = collection(db, collectionName); // Reference to the collection
+  const q = query(collectionRef, where("uid", "==", uid)); // Query to find the document by uid
+
+  try {
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+      console.log(`No document found with uid: ${uid}`);
       return null;
     }
+
+    // Return the data of the first matching document
+    return querySnapshot.docs[0].data();
+  } catch (error) {
+    console.error("Error getting document: ", error);
+    return null;
   }
+}

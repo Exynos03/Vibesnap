@@ -1,18 +1,18 @@
 .swiper-button-next {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .swiper-button-prev {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /* Default dots */
 .swiper-pagination-bullet {
-    background-color: #cccccc; /* Default dot color */
-    opacity: 1; /* Optional: make dots fully visible */
-  }
-  
-  /* Active dot */
-  .swiper-pagination-bullet-active {
-    background-color: white; /* Active dot color */
-  }
+  background-color: #cccccc; /* Default dot color */
+  opacity: 1; /* Optional: make dots fully visible */
+}
+
+/* Active dot */
+.swiper-pagination-bullet-active {
+  background-color: white; /* Active dot color */
+}

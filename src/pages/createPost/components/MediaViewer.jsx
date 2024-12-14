@@ -1,12 +1,12 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import '../stylesheets/media-viewer.css';
-import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "../stylesheets/media-viewer.css";
+import { Pagination } from "swiper/modules";
 import { CiCirclePlus } from "react-icons/ci";
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
-const MediaViewer = ({files, setFiles, setCaption, caption}) => {
+const MediaViewer = ({ files, setFiles, setCaption, caption }) => {
   const [filePreviews, setFilePreviews] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(1); // Track the current slide index
   const inputRef = useRef(null);
@@ -22,7 +22,8 @@ const MediaViewer = ({files, setFiles, setCaption, caption}) => {
 
     // Add only unique files (avoid duplicates)
     const filteredFiles = newFiles.filter(
-      (newFile) => !files?.some((existingFile) => existingFile.name === newFile.name)
+      (newFile) =>
+        !files?.some((existingFile) => existingFile.name === newFile.name),
     );
 
     setFiles((prevFiles) => [...prevFiles, ...filteredFiles]);
@@ -33,63 +34,66 @@ const MediaViewer = ({files, setFiles, setCaption, caption}) => {
   };
 
   return (
-    <section className='media-container'>
-        <div className="media-viewer">
+    <section className="media-container">
+      <div className="media-viewer">
         {!(filePreviews?.length > 0) ? (
-            <div className="add-media" onClick={handleFileInputClick}>
-            <CiCirclePlus size={window.innerWidth > 768 ? 200 : 100} color="#00000" />
+          <div className="add-media" onClick={handleFileInputClick}>
+            <CiCirclePlus
+              size={window.innerWidth > 768 ? 200 : 100}
+              color="#00000"
+            />
             <p>Add Photo or Video</p>
             <input
-                type="file"
-                ref={inputRef}
-                accept="image/*,video/*"
-                multiple
-                style={{ display: "none" }}
-                onChange={handleFileUpload}
+              type="file"
+              ref={inputRef}
+              accept="image/*,video/*"
+              multiple
+              style={{ display: "none" }}
+              onChange={handleFileUpload}
             />
-            </div>
+          </div>
         ) : (
-            <Swiper
+          <Swiper
             pagination={true}
             modules={[Pagination]}
             className="mySwiper"
             onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex + 1)} // Update index on slide change
-            >
+          >
             <div className="media-counter">
-                <p>
+              <p>
                 {currentIndex}/{filePreviews.length}
-                </p>
+              </p>
             </div>
             {filePreviews.map((preview, index) => (
-                <SwiperSlide key={index}>
+              <SwiperSlide key={index}>
                 {files[index].type.startsWith("image/") ? (
-                    <img
-                        src={preview}
-                        alt={`Preview ${index + 1}`}
-                        className='img-video'
-                    />
+                  <img
+                    src={preview}
+                    alt={`Preview ${index + 1}`}
+                    className="img-video"
+                  />
                 ) : (
-                    <video
-                        src={preview}
-                        controls
-                        autoPlay 
-                        muted 
-                        loop
-                        className='img-video'
-                    />
+                  <video
+                    src={preview}
+                    controls
+                    autoPlay
+                    muted
+                    loop
+                    className="img-video"
+                  />
                 )}
-                </SwiperSlide>
+              </SwiperSlide>
             ))}
-            </Swiper>
+          </Swiper>
         )}
-        </div>
+      </div>
 
-        <textarea
-            id="example"
-            value={caption}
-            onChange={(e) => setCaption(e.target.value)}
-            placeholder="Add your caption here..."
-        />
+      <textarea
+        id="example"
+        value={caption}
+        onChange={(e) => setCaption(e.target.value)}
+        placeholder="Add your caption here..."
+      />
     </section>
   );
 };
