@@ -4,13 +4,13 @@ import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBuA9P0XNwymLwoHpOsNElaAcgr1uRG4XA",
-  authDomain: "loveto-love-timeline.firebaseapp.com",
-  projectId: "loveto-love-timeline",
-  storageBucket: "loveto-love-timeline.appspot.com",
-  messagingSenderId: "1068876968985",
-  appId: "1:1068876968985:web:0c1f47a2ae6289b9792688",
-  measurementId: "G-X23Y14TPSL",
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
